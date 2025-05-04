@@ -6,8 +6,10 @@ public class characterController : MonoBehaviour
     private float moveDirection;
     private bool moving;
     private bool jump;
-    private SpriteRenderer _spriteRenderer;
     private bool grounded = true;
+    private bool isAttacking = false;
+
+    private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2d;
     private Animator anim;
 
@@ -66,6 +68,12 @@ public class characterController : MonoBehaviour
             anim.SetTrigger("jump");
             anim.SetBool("grounded",false);
         }
+        if (Input.GetKeyDown(KeyCode.K) && !isAttacking)
+        {
+            anim.SetTrigger("attack");
+            anim.SetBool("isattacking",true);
+            isAttacking = true;
+        }
 
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -75,5 +83,10 @@ public class characterController : MonoBehaviour
             grounded = true;
             anim.SetBool("grounded",true);
         }
+    }
+    public void EndAttack()
+    {
+        anim.SetBool("isattacking", false);
+        isAttacking = false;
     }
 }
