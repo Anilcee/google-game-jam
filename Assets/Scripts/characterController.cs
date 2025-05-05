@@ -7,11 +7,15 @@ public class characterController : MonoBehaviour
     private bool moving;
     private bool jump;
     private bool grounded = true;
-    private bool isAttacking = false;
 
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2d;
     private Animator anim;
+
+    public GameObject ghostPrefab;
+    private GhostRecorder ghostRecorder;
+    public float ghostRecordTime = 3f;
+    private GameObject activeGhost;
 
     void Awake()
     {
@@ -22,6 +26,8 @@ public class characterController : MonoBehaviour
     {
         _rigidbody2d = GetComponent<Rigidbody2D>(); 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        ghostRecorder = gameObject.AddComponent<GhostRecorder>();
+        ghostRecorder.recordTime = ghostRecordTime;
     }
 
     void FixedUpdate()
@@ -68,13 +74,15 @@ public class characterController : MonoBehaviour
             anim.SetTrigger("jump");
             anim.SetBool("grounded",false);
         }
-        if (Input.GetKeyDown(KeyCode.K) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.E) && ghostPrefab != null && ghostRecorder != null && activeGhost == null)
         {
-            anim.SetTrigger("attack");
-            anim.SetBool("isattacking",true);
-            isAttacking = true;
+            activeGhost = Instantiate(ghostPrefab, transform.position, transform.rotation);
+            GhostPlayer gp = activeGhost.GetComponent<GhostPlayer>();
+            if (gp != null)
+            {
+                gp.Play(ghostRecorder.GetLastRecords());
+            }
         }
-
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -83,10 +91,5 @@ public class characterController : MonoBehaviour
             grounded = true;
             anim.SetBool("grounded",true);
         }
-    }
-    public void EndAttack()
-    {
-        anim.SetBool("isattacking", false);
-        isAttacking = false;
     }
 }
