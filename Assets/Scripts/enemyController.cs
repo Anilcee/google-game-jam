@@ -1,13 +1,21 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class enemyController : MonoBehaviour
 {
+    public Transform startPoint;
+    public Transform endPoint;
     public float moveSpeed = 2f;
-    public Transform groundCheck;
-    public float groundCheckDistance = 1f;
-    public LayerMask groundLayer;
+    public float tolerance = 0.1f;
 
-    private bool movingRight = true;
+    private Vector3 targetPoint;
+    private bool movingToEnd = true;
+
+    void Start()
+    {
+        if (startPoint != null && endPoint != null)
+            targetPoint = endPoint.position;
+    }
 
     void Update()
     {
@@ -16,31 +24,42 @@ public class enemyController : MonoBehaviour
 
     void Patrol()
     {
-        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+        if (startPoint == null || endPoint == null)
+            return;
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+        transform.position = Vector2.MoveTowards(transform.position, targetPoint, moveSpeed * Time.deltaTime);
 
-        if (!groundInfo.collider)
+        float distance = Vector2.Distance(transform.position, targetPoint);
+        if (distance <= tolerance)
         {
+            movingToEnd = !movingToEnd;
+            targetPoint = movingToEnd ? endPoint.position : startPoint.position;
             Flip();
         }
     }
 
     void Flip()
     {
-        movingRight = !movingRight;
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
-        moveSpeed *= -1;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerPrefs.SetString("LastLevel", SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     private void OnDrawGizmos()
     {
-        if (groundCheck != null)
+        if (startPoint != null && endPoint != null)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(startPoint.position, endPoint.position);
         }
     }
 }

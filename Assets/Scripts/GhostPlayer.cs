@@ -67,7 +67,7 @@ public class GhostPlayer : MonoBehaviour
                     ButtonInteraction button = hit.GetComponent<ButtonInteraction>();
                     if (button != null)
                     {
-                        button.doorController.OperateDoor();
+                        button.TriggerButton();
                     }
                 }
             }

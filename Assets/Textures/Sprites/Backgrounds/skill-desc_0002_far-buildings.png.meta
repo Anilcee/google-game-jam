@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      skill-desc_0002_far-buildings_0: -5855985882106638921
+      skill-desc_0002_far-buildings_1: -3524273361831387203
+      skill-desc_0002_far-buildings_2: 3227187420720291398
+      skill-desc_0002_far-buildings_3: 1146018645288456313
+      skill-desc_0002_far-buildings_4: -2101356884792801633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
