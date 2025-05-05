@@ -599,14 +599,14 @@ MonoBehaviour:
   nextButton: {fileID: 684620836}
   slides:
   - image: {fileID: -7954918041293120040, guid: 0cce42ee0dcca37409e51d6e87079b7d, type: 3}
-    text: "Eren laboratuvarda \xE7al\u0131\u015F\u0131yordu. \nEli bir andda \xE7ekmecedeki
+    text: "Eren laboratuvarda \xE7al\u0131\u015F\u0131yordu. \nEli bir anda \xE7ekmecedeki
       bir saate dokundu."
   - image: {fileID: -7954918041293120040, guid: 0cce42ee0dcca37409e51d6e87079b7d, type: 3}
-    text: "Eli bir andda \xE7ekmecedeki bir saate dokundu."
+    text: "Eli bir anda \xE7ekmecedeki bir saate dokundu."
   - image: {fileID: 6829845435162842489, guid: 3dafe05ebecf2bf4aaf1f3ef0b261f2d, type: 3}
-    text: Bu grilikde Neeeeeeee!!!
+    text: Bu grilik de Neeeeeeee!!!
   - image: {fileID: -6225373128341450492, guid: c525d2a2792f0014696bb4af3c1bdab7, type: 3}
-    text: "Buras\u0131da Neresi en iyisi buradan hemen ayr\u0131lay\u0131m."
+    text: "Buras\u0131 da neresi en iyisi buradan hemen ayr\u0131lay\u0131m."
 --- !u!4 &1621730735
 Transform:
   m_ObjectHideFlags: 0

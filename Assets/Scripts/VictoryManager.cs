@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverManager : MonoBehaviour
+public class VictoryManager : MonoBehaviour
 {
     public void PlayAgain()
     {
-        string lastLevel = PlayerPrefs.GetString("LastLevel", "Level1");
-        SceneManager.LoadScene(lastLevel);
+        SceneManager.LoadScene("Chapter_1_FirstLab");
     }
     public void QuitGame()
     {
@@ -14,3 +13,4 @@ public class GameOverManager : MonoBehaviour
         Debug.Log("Oyun kapatılıyor...");
     }
 }
+

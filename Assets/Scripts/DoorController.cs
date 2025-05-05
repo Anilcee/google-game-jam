@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; // Sahne geçişi için
 
 public class DoorController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class DoorController : MonoBehaviour
 
     public void OperateDoor()
     {
-        if(!isBusy) StartCoroutine(DoorOperation());
+        if (!isBusy) StartCoroutine(DoorOperation());
     }
 
     private IEnumerator DoorOperation()
@@ -24,7 +25,7 @@ public class DoorController : MonoBehaviour
         animator.SetTrigger("Open");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         doorCollider.enabled = false;  
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.25f);
         animator.SetTrigger("Close");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         doorCollider.enabled = true;

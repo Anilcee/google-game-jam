@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StoryManeger : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class StoryManeger : MonoBehaviour
         }
         else
         {
-            Debug.Log("Hikaye bitti!"); // burada sahne geçiþi yapýlabilir
+            SceneManager.LoadScene("Chapter_2_FirstOutside");
         }
     }
 }
