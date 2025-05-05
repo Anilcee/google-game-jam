@@ -130,7 +130,11 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
+<<<<<<< HEAD
     m_DefaultBool: 1
+=======
+    m_DefaultBool: 0
+>>>>>>> e5d8a352aa5971414af553a57939d54290971e97
     m_Controller: {fileID: 9100000}
   - m_Name: Yvelocity
     m_Type: 1
